@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @RequiredArgsConstructor
@@ -24,5 +25,18 @@ public class Uzer {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserBalance> userBalanceList = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Uzer uzer = (Uzer) o;
+        return id.equals(uzer.id) && name.equals(uzer.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }
 

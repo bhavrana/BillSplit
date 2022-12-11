@@ -24,4 +24,7 @@ public class UserGroup {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
     private List<Uzer> users = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userGroup")
+    private List<Expense> expenses = new ArrayList<>();
 }

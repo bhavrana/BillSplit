@@ -21,6 +21,9 @@ public class Expense {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expense")
     private List<UserBalance> userBalanceList = new ArrayList<>();
 
+    @ManyToOne
+    private UserGroup userGroup;
+
     private String title;
 
     private Long timestamp;

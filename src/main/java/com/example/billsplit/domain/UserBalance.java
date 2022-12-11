@@ -19,7 +19,7 @@ public class UserBalance {
     @ManyToOne
     private Uzer user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Balance balance;
 
     @ManyToOne
