@@ -9,6 +9,7 @@ import com.example.billsplit.request.input.expense.AddExpenseInput;
 import com.example.billsplit.request.output.raw.expense.ExpenseOutput;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +29,12 @@ public class CreateExpenseService {
         this.currencyRepository = currencyRepository;
     }
 
+    @Transactional
     public ExpenseOutput createExpense(final AddExpenseInput addExpenseInput) {
         Expense expense = new Expense();
         expense.setTimestamp(System.currentTimeMillis());
         expense.setTitle(addExpenseInput.getTitle());
         expense.setSettled(false);
-
 
         UserGroup userGroup = userGroupRepository.findById(addExpenseInput.getGroupID()).get();
 

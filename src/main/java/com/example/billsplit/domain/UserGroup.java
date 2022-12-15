@@ -22,9 +22,15 @@ public class UserGroup {
 
     private  String title;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userGroup")
+    @OneToMany(mappedBy = "userGroup")
     private List<Uzer> users = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userGroup")
     private List<Expense> expenses = new ArrayList<>();
+
+    @PreRemove
+    public void nullification() {
+        users.forEach(user -> user.setUserGroup(null));
+    }
+
 }

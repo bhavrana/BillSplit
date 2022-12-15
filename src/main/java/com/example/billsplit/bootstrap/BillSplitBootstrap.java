@@ -69,8 +69,8 @@ public class BillSplitBootstrap implements ApplicationListener<ContextRefreshedE
         g1.setUsers(userList1);
 
         UserGroup g2 = new UserGroup();
-        g2.setTitle("DisneyLand");
-        g2.setDescription("Trip to DisneyLand tokyo");
+        g2.setTitle("LasVegas");
+        g2.setDescription("Trip to the sin city");
         List<Uzer> userList2 = new ArrayList<>();
         Prachi.setUserGroup(g2);
         userList2.add(Prachi);

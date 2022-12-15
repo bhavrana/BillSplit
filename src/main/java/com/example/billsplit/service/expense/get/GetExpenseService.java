@@ -2,9 +2,12 @@ package com.example.billsplit.service.expense.get;
 
 import com.example.billsplit.domain.Expense;
 import com.example.billsplit.domain.UserBalance;
+import com.example.billsplit.domain.UserGroup;
 import com.example.billsplit.repository.ExpenseRepository;
 import com.example.billsplit.request.output.raw.expense.ExpenseOutput;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GetExpenseService {
@@ -24,5 +27,9 @@ public class GetExpenseService {
             expenseOutput.addUserBalance(userBalance.getUser().getName(), userBalance.getBalance().getAmount());
         }
         return expenseOutput;
+    }
+
+    public List<Expense> getExpensesForUserGroup(final Long userGroupID) {
+        return expenseRepository.findExpenseByUserGroup_Id(userGroupID);
     }
 }

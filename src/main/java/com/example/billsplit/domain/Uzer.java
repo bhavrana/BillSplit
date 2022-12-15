@@ -3,7 +3,6 @@ package com.example.billsplit.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +37,6 @@ public class Uzer {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
 }
 
