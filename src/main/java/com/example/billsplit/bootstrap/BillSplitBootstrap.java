@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class BillSplitBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -27,65 +27,73 @@ public class BillSplitBootstrap implements ApplicationListener<ContextRefreshedE
 
     private void saveAll() {
         Uzer Aman = new Uzer();
-        Aman.setName("Aman");
+        Aman.setName("Aman@gmail.com");
 
         Uzer Priya = new Uzer();
-        Priya.setName("Priya");
+        Priya.setName("Priya@gmail.com");
 
         Uzer Alok = new Uzer();
-        Alok.setName("Alok");
+        Alok.setName("Alok@gmail.com");
 
         Uzer Mohit = new Uzer();
-        Mohit.setName("Mohit");
+        Mohit.setName("Mohit@gmail.com");
 
         Uzer Bhavna = new Uzer();
-        Bhavna.setName("Bhavna");
+        Bhavna.setName("Bhavna@gmail.com");
 
         Uzer Prachi = new Uzer();
-        Prachi.setName("Prachi");
+        Prachi.setName("Prachi@gmail.com");
 
         Uzer Twinkle = new Uzer();
-        Twinkle.setName("Twinkle");
+        Twinkle.setName("Twinkle@gmail.com");
 
         Uzer Mimi = new Uzer();
-        Mimi.setName("Mimi");
+        Mimi.setName("Mimi@gmail.com");
 
         UserGroup g1 = new UserGroup();
         g1.setTitle("DisneyLand");
         g1.setDescription("Trip to DisneyLand tokyo");
 
+        userGroupRepository.save(g1);
 
-        List<Uzer> userList1 = new ArrayList<>();
-        Mohit.setUserGroup(g1);
+        Set<Uzer> userList1 = new HashSet<>();
+        Mohit.addUserGroup(g1);
         userList1.add(Mohit);
-        Bhavna.setUserGroup(g1);
+        Bhavna.addUserGroup(g1);
         userList1.add(Bhavna);
-        Aman.setUserGroup(g1);
+        Aman.addUserGroup(g1);
         userList1.add(Aman);
-        Priya.setUserGroup(g1);
+        Priya.addUserGroup(g1);
         userList1.add(Priya);
         userRepository.saveAll(userList1);
 
         g1.setUsers(userList1);
 
+        userGroupRepository.save(g1);
+
         UserGroup g2 = new UserGroup();
         g2.setTitle("LasVegas");
         g2.setDescription("Trip to the sin city");
-        List<Uzer> userList2 = new ArrayList<>();
-        Prachi.setUserGroup(g2);
+
+        userGroupRepository.save(g2);
+
+        Set<Uzer> userList2 = new HashSet<>();
+        Prachi.addUserGroup(g2);
         userList2.add(Prachi);
-        Twinkle.setUserGroup(g2);
+        Twinkle.addUserGroup(g2);
         userList2.add(Twinkle);
-        Mimi.setUserGroup(g2);
+        Mimi.addUserGroup(g2);
         userList2.add(Mimi);
-        Alok.setUserGroup(g2);
+        Alok.addUserGroup(g2);
         userList2.add(Alok);
+        Bhavna.addUserGroup(g2);
+        userList2.add(Bhavna);
 
         userRepository.saveAll(userList2);
 
         g2.setUsers(userList2);
 
-        userGroupRepository.save(g1);
+
         userGroupRepository.save(g2);
 
         Currency inr = new Currency();

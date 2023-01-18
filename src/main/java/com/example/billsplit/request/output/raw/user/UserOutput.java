@@ -3,6 +3,9 @@ package com.example.billsplit.request.output.raw.user;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 public class UserOutput {
@@ -11,5 +14,6 @@ public class UserOutput {
 
     private String name;
 
-    private String userGroup;
+    private List<String> userGroup = new ArrayList<>();
+
 }

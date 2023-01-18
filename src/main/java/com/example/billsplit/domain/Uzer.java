@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @RequiredArgsConstructor
@@ -19,8 +17,8 @@ public class Uzer {
 
     private String name;
 
-    @ManyToOne
-    private UserGroup userGroup;
+    @ManyToMany
+    private Set<UserGroup> userGroups = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserBalance> userBalanceList = new ArrayList<>();
@@ -36,6 +34,10 @@ public class Uzer {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    public void addUserGroup(UserGroup userGroup) {
+        this.userGroups.add(userGroup);
     }
 
 }

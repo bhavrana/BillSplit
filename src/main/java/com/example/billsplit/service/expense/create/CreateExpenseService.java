@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CreateExpenseService {
@@ -42,7 +43,7 @@ public class CreateExpenseService {
 
         Uzer payee = userRepository.findById(addExpenseInput.getUserID()).get();
 
-        List<Uzer> groupUsers = userGroup.getUsers();
+        Set<Uzer> groupUsers = userGroup.getUsers();
 
         Long amountPaid = addExpenseInput.getPaid();
 

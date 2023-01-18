@@ -37,7 +37,9 @@ public class UserService {
     }
     
     public UserDecoratedOutput postUser(final String name, Long groupID) {
-        getUserGroupValidationService.validateIfUserGroupExits(groupID);
+        if(groupID != null) {
+            getUserGroupValidationService.validateIfUserGroupExits(groupID);
+        }
         UserOutput userOutput = createUserService.createUser(name,groupID);
         return userHelper.getUserHelper(userOutput);
     }
@@ -45,5 +47,9 @@ public class UserService {
     public void deleteUser(Long userID) {
         userValidationService.validateIfUserExists(userID);
         deleteUserService.deleteUserByID(userID);
+    }
+
+    public boolean validateIfUserExists(String name) {
+        return userValidationService.validateIfUserExists(name);
     }
 }

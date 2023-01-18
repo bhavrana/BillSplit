@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @RequiredArgsConstructor
@@ -22,15 +24,15 @@ public class UserGroup {
 
     private  String title;
 
-    @OneToMany(mappedBy = "userGroup")
-    private List<Uzer> users = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userGroups")
+    private Set<Uzer> users = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userGroup")
     private List<Expense> expenses = new ArrayList<>();
 
-    @PreRemove
+    /*@PreRemove
     public void nullification() {
-        users.forEach(user -> user.setUserGroup(null));
-    }
+        users.forEach(user -> user.setUserGroups(null));
+    }*/
 
 }

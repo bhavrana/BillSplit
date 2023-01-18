@@ -8,6 +8,7 @@ import com.example.billsplit.request.output.raw.user.UserOutput;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 
 @Service
 public class CreateUserService {
@@ -22,15 +23,26 @@ public class CreateUserService {
 
     @Transactional
     public UserOutput createUser(final String name, Long groupID) {
-        UserGroup userGroup = userGroupRepository.findById(groupID).get();
+        UserGroup userGroup = null;
+        if(groupID != null) {
+            userGroup = userGroupRepository.findById(groupID).get();
+        }
 
         Uzer user = new Uzer();
         user.setName(name);
-        user.setUserGroup(userGroup);
+        if(userGroup != null)
+            user.addUserGroup(userGroup);
 
         userRepository.save(user);
 
-        UserOutput userOutput = new UserOutput(user.getId(), user.getName(), user.getUserGroup().getTitle());
+        UserGroup finalUserGroup = userGroup;
+        UserOutput userOutput = new UserOutput(user.getId(), user.getName(), user.getUserGroups().isEmpty() == true
+                ? null
+                : new ArrayList<String>() {
+            {
+                add(finalUserGroup.getTitle());
+            }
+        });
         return userOutput;
     }
 }
